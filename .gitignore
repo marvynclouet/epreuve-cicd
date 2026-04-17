@@ -1,0 +1,8 @@
+node_modules/
+src/node_modules/
+.env
+sbom.json
+src/sbom.json
+coverage/
+*.log
+.DS_Store
