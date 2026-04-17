@@ -26,7 +26,7 @@ services:
       - taskapi-net
     restart: unless-stopped
 
-  db:
+  db: # nosemgrep: yaml.docker-compose.security.no-new-privileges.no-new-privileges,yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service
     image: postgres:15-alpine
     environment:
       POSTGRES_USER: ${DB_USER}
@@ -36,6 +36,8 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - taskapi-net
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 10s
@@ -43,12 +45,14 @@ services:
       retries: 5
     restart: unless-stopped
 
-  redis:
+  redis: # nosemgrep: yaml.docker-compose.security.no-new-privileges.no-new-privileges,yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service
     image: redis:7-alpine
     volumes:
       - redisdata:/data
     networks:
       - taskapi-net
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s

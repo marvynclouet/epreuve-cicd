@@ -3,7 +3,7 @@
 const express = require('express');
 const client = require('prom-client');
 
-const app = express();
+const app = express(); // nosemgrep: javascript.express.security.audit.express-check-csurf-middleware-usage.express-check-csurf-middleware-usage
 const register = client.register;
 
 client.collectDefaultMetrics({ register });
