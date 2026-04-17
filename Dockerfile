@@ -18,7 +18,8 @@ ENV PORT=3000
 
 WORKDIR /app
 
-RUN addgroup -S appgroup && adduser -S -u 1001 appuser -G appgroup \
+RUN apk upgrade --no-cache \
+    && addgroup -S appgroup && adduser -S -u 1001 appuser -G appgroup \
     && mkdir -p /app/tmp \
     && chown -R appuser:appgroup /app
 
