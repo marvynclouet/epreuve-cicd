@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskapi-config
+  labels:
+    app: taskapi
+data:
+  NODE_ENV: production
+  PORT: "3000"
+  LOG_LEVEL: info
